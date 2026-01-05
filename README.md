@@ -1,6 +1,6 @@
 # PowerView Shade Control - Web App
 
-A web-based controller for Hunter Douglas PowerView Gen 3 shades using Web Bluetooth API. Control your shades directly from Chrome/Edge without needing a hub or gateway!
+A modern web-based controller for Hunter Douglas PowerView Gen 3 shades using Web Bluetooth API. Control your shades directly from Chrome/Edge without needing a hub or gateway!
 
 ## Features
 
@@ -8,9 +8,10 @@ A web-based controller for Hunter Douglas PowerView Gen 3 shades using Web Bluet
 - 🎚️ **Control shade position** (0-100%) with slider or quick buttons
 - 🔐 **AES-128-CTR encryption** with your extracted home key
 - 📱 **Cross-platform** - Works on Mac, Windows, Linux, Android (Chrome/Edge)
-- 🪟 **Multi-shade support** - Control multiple shades from one page
+- 🪟 **Multi-shade support** - Control multiple shades with localStorage persistence
 - 🐛 **Built-in debug console** for troubleshooting
-- 💾 **No installation needed** - Just open in browser!
+- ⚡ **Built with Vite** - Fast development and optimized builds
+- 💾 **Persistent shade storage** - Remembers your paired shades
 
 ## Quick Start
 
@@ -23,63 +24,36 @@ A web-based controller for Hunter Douglas PowerView Gen 3 shades using Web Bluet
 
 ### Local Development
 
-#### Option 1: Using Netlify Dev (Recommended)
-
 1. **Clone the repository:**
    ```bash
    git clone <your-repo-url>
    cd hunter-douglas-pwa
    ```
 
-2. **Copy the environment file:**
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Copy the environment file:**
    ```bash
    cp .env.example .env
    ```
 
-3. **Edit `.env` with your settings:**
+4. **Edit `.env` with your settings:**
    ```bash
-   POWERVIEW_ENCRYPTION_KEY=YOUR_32_CHARACTER_HEX_KEY
-   POWERVIEW_SHADE_PREFIX=DUE
+   VITE_POWERVIEW_ENCRYPTION_KEY=YOUR_32_CHARACTER_HEX_KEY
+   VITE_POWERVIEW_SHADE_PREFIX=DUE
    ```
-
-4. **Install Netlify CLI (if not already installed):**
-   ```bash
-   npm install -g netlify-cli
-   ```
+   **Note:** Vite requires the `VITE_` prefix for environment variables.
 
 5. **Start the dev server:**
    ```bash
-   netlify dev
+   npm run dev
    ```
 
 6. **Open in browser:**
-   - Single shade: http://localhost:8000/index.html
-   - Multi shade: http://localhost:8000/index-multi.html
-
-#### Option 2: Using config.local.js
-
-1. **Copy the config template:**
-   ```bash
-   cp config.local.example.js config.local.js
-   ```
-
-2. **Edit `config.local.js` with your settings:**
-   ```javascript
-   window.LOCAL_CONFIG = {
-       encryptionKey: 'YOUR_32_CHARACTER_HEX_KEY',
-       shadePrefix: 'DUE'
-   };
-   ```
-
-3. **Start any web server:**
-   ```bash
-   python3 -m http.server 8000
-   # or
-   npx http-server -p 8000
-   ```
-
-4. **Open in browser:**
-   - http://localhost:8000/index.html
+   - Navigate to http://localhost:8000
 
 ## Deploying to Netlify
 
@@ -109,8 +83,8 @@ A web-based controller for Hunter Douglas PowerView Gen 3 shades using Web Bluet
 
    | Key | Value | Example |
    |-----|-------|---------|
-   | `POWERVIEW_ENCRYPTION_KEY` | Your 32-character hex key | `YOUR_KEY_HERE` |
-   | `POWERVIEW_SHADE_PREFIX` | Your shade name prefix | `DUE` |
+   | `VITE_POWERVIEW_ENCRYPTION_KEY` | Your 32-character hex key | `YOUR_KEY_HERE` |
+   | `VITE_POWERVIEW_SHADE_PREFIX` | Your shade name prefix | `DUE` |
 
 3. **Redeploy your site:**
    - Go to Deploys → Trigger deploy → Deploy site
@@ -138,21 +112,13 @@ This guide walks you through:
 
 ## Usage
 
-### Single Shade Mode
-
 1. Open the app in Chrome/Edge
-2. Click **"📡 Scan for Shades"**
+2. Click **"➕ Add Shade"**
 3. Select your shade from the Bluetooth dialog
 4. Click **"Pair"**
 5. Use the slider or buttons to control position!
-
-### Multi Shade Mode
-
-1. Navigate to the multi-shade page
-2. Click **"➕ Add Shade"**
-3. Select and pair first shade
-4. Click **"➕ Add Shade"** again for additional shades
-5. Control each shade independently!
+6. Add more shades by clicking **"➕ Add Shade"** again
+7. Your paired shades are saved in localStorage and will persist between sessions
 
 ## Configuration
 
@@ -160,16 +126,9 @@ This guide walks you through:
 
 The app filters shades by name prefix during scanning. To customize:
 
-**Using .env (for Netlify):**
+**Using .env:**
 ```bash
-POWERVIEW_SHADE_PREFIX=YOUR_PREFIX
-```
-
-**Using config.local.js (for local development):**
-```javascript
-window.LOCAL_CONFIG = {
-    shadePrefix: 'YOUR_PREFIX'  // e.g., 'DUE', 'SHD', etc.
-};
+VITE_POWERVIEW_SHADE_PREFIX=YOUR_PREFIX
 ```
 
 Common shade prefixes:
@@ -177,48 +136,26 @@ Common shade prefixes:
 - `SHD` - Standard shades
 - `ROL` - Roller shades
 
-## Forking for Your Own Use
-
-### What to Keep Private
-
-The `.gitignore` file is configured to exclude:
-- ✅ `config.local.js` - Your local configuration
-- ✅ `.env` - Your environment variables
-- ✅ `CLAUDE_CONTEXT.md` - Development history (optional)
-
-### Files to Check Before Pushing
-
-Before committing, make sure you haven't accidentally included:
-- Your encryption key in any `.js` files
-- Personal shade names or IDs
-- Any `.env` files (use `.env.example` as template)
-
-### Files Safe to Share
-
-These files are templates and safe to commit:
-- ✅ `config.local.example.js` - Config template
-- ✅ `.env.example` - Environment template
-- ✅ `config.js` - Configuration loader (no secrets)
-- ✅ All HTML, CSS, and core JS files
-
 ## Project Structure
 
 ```
 .
-├── index.html                  # Single shade UI
-├── index-multi.html            # Multi shade UI
-├── style.css                   # Styling
-├── app.js                      # Single shade logic
-├── app-multi.js                # Multi shade logic
-├── bluetooth.js                # BLE communication
-├── encryption.js               # AES-128-CTR encryption
-├── config.js                   # Configuration loader
-├── config.local.example.js     # Local config template
-├── .env.example                # Environment template
-├── netlify.toml                # Netlify configuration
+├── index.html                  # Multi-shade UI
+├── src/
+│   ├── js/
+│   │   ├── app.js              # Multi-shade logic
+│   │   ├── bluetooth.js        # BLE communication
+│   │   ├── encryption.js       # AES-128-CTR encryption
+│   │   ├── config.js           # Configuration loader
+│   │   └── main.js             # Entry point
+│   └── style.css               # Styling
 ├── netlify/
 │   └── functions/
-│       └── config.js           # Netlify function for env injection
+│       └── weather.mts         # Example Netlify function
+├── .env.example                # Environment template
+├── netlify.toml                # Netlify configuration
+├── vite.config.js              # Vite build configuration
+├── package.json                # Dependencies and scripts
 ├── README.md                   # This file
 └── EXTRACT_KEY_ANDROID_EMULATOR.md  # Key extraction guide
 ```
@@ -305,8 +242,8 @@ The encryption key is unique to your PowerView account and is stored in the app'
 
 ### "No encryption key configured"
 
-- Make sure `.env` file exists with `POWERVIEW_ENCRYPTION_KEY` set
-- OR ensure `config.local.js` has `encryptionKey` configured
+- Make sure `.env` file exists with `VITE_POWERVIEW_ENCRYPTION_KEY` set
+- Restart the dev server after changing `.env` file
 - Check the browser console for specific errors
 
 ## Security Considerations

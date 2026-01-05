@@ -382,12 +382,21 @@ function removeShade(shadeId) {
 
     debug(`Removed shade ${shadeId}`, 'info');
 
-    // Hide reconnect all button if no saved shades remain
+    // Update shade count
+    updateShadeCount();
+
+    // Show empty state if no shades remain
     const savedShades = getSavedShades();
     if (savedShades.length === 0) {
-        const reconnectAllBtn = document.getElementById('reconnectAllButton');
-        if (reconnectAllBtn) {
-            reconnectAllBtn.style.display = 'none';
+        const container = document.getElementById('shadesContainer');
+        if (container) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <span class="empty-icon">🪟</span>
+                    <p>No shades added yet</p>
+                    <p class="empty-hint">Click "Add Shade" to get started</p>
+                </div>
+            `;
         }
     }
 }
