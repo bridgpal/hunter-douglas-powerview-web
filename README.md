@@ -55,46 +55,6 @@ A modern web-based controller for Hunter Douglas PowerView Gen 3 shades using We
 6. **Open in browser:**
    - Navigate to http://localhost:8000
 
-## Deploying to Netlify
-
-### Step 1: Fork This Repository
-
-1. Click the "Fork" button on GitHub
-2. Clone your fork to your local machine
-
-### Step 2: Set Up Netlify
-
-1. **Sign up/Login to [Netlify](https://netlify.com)**
-
-2. **Click "Add new site" → "Import an existing project"**
-
-3. **Connect to GitHub and select your forked repository**
-
-4. **Configure build settings:**
-   - Build command: (leave empty)
-   - Publish directory: `.`
-   - Click "Deploy site"
-
-### Step 3: Configure Environment Variables
-
-1. **Go to Site settings → Environment variables**
-
-2. **Add the following variables:**
-
-   | Key | Value | Example |
-   |-----|-------|---------|
-   | `VITE_POWERVIEW_ENCRYPTION_KEY` | Your 32-character hex key | `YOUR_KEY_HERE` |
-   | `VITE_POWERVIEW_SHADE_PREFIX` | Your shade name prefix | `DUE` |
-
-3. **Redeploy your site:**
-   - Go to Deploys → Trigger deploy → Deploy site
-
-### Step 4: Access Your App
-
-Your app will be available at: `https://your-site-name.netlify.app`
-
-**Important:** Web Bluetooth requires HTTPS, which Netlify provides automatically!
-
 ## Getting Your Encryption Key
 
 If you haven't extracted your encryption key yet, follow the complete guide:
@@ -160,47 +120,6 @@ Common shade prefixes:
 └── EXTRACT_KEY_ANDROID_EMULATOR.md  # Key extraction guide
 ```
 
-## How It Works
-
-### Bluetooth Protocol
-
-The app communicates with PowerView Gen 3 shades using:
-
-**Service UUID:** `0000fdc1-0000-1000-8000-00805f9b34fb`
-**Characteristic:** `cafe1001-c0ff-ee01-8000-a110ca7ab1e0`
-
-### Command Structure
-
-Commands follow this format:
-```
-[cmd_id_low, cmd_id_high, sequence, data_length, ...data]
-```
-
-**Set Position Command (0x01F7):**
-```
-F7 01 [seq] 09 [pos*100 lo] [pos*100 hi] 00 80 00 80 00 80 00
-```
-
-**Identify Command (0x11F7):**
-```
-F7 11 [seq] 01 03
-```
-
-**Stop Command (0xB8F7):**
-```
-F7 B8 [seq] 00
-```
-
-### Encryption
-
-All commands are encrypted using **AES-128-CTR** mode:
-- **Algorithm:** AES-128
-- **Mode:** CTR (Counter)
-- **Key:** Your 16-byte home key
-- **IV:** 16 bytes of zeros
-
-The encryption key is unique to your PowerView account and is stored in the app's SQLite database.
-
 ## Browser Compatibility
 
 | Browser | Desktop | Mobile |
@@ -246,25 +165,6 @@ The encryption key is unique to your PowerView account and is stored in the app'
 - Restart the dev server after changing `.env` file
 - Check the browser console for specific errors
 
-## Security Considerations
-
-### Local Deployment
-- ✅ Safe - only accessible on your network
-- ✅ Can use localhost
-- ✅ Private keys stay on your machine
-
-### Netlify Deployment
-- ✅ HTTPS enabled by default
-- ✅ Environment variables stored securely
-- ⚠️ Anyone with access to your Netlify URL can control your shades
-- 💡 Consider adding authentication if sharing publicly
-
-### Best Practices
-- Don't commit `.env` or `config.local.js` to git
-- Use Netlify's environment variables for production
-- Keep your encryption key private
-- Consider enabling Netlify password protection for your site
-
 ## Credits & Resources
 
 This project was made possible by reverse-engineering work from:
@@ -307,10 +207,3 @@ If you got this working, you now have:
 ✅ Privacy-focused (local or self-hosted control)
 ✅ Easy to fork and deploy
 
-**Total cost: $0**
-**Setup time: ~30 minutes**
-**Result: Priceless** 🪟✨
-
----
-
-Built with Claude Code
