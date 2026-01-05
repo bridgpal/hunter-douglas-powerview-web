@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerView Shade Control</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🪟 PowerView Shade Control</h1>
+            <p class="subtitle">Control your Hunter Douglas shades via Bluetooth</p>
+        </header>
+
+        <div class="status-bar">
+            <div id="status" class="status">Ready to scan</div>
+            <div id="encryption-status" class="encryption-status">
+                🔑 Encryption key loaded
+            </div>
+        </div>
+
+        <div class="scan-section">
+            <button id="scanButton" class="btn btn-primary">
+                📡 Scan for Shades
+            </button>
+        </div>
+
+        <div id="shadesList" class="shades-list"></div>
+
+        <div id="controlPanel" class="control-panel" style="display: none;">
+            <h2 id="shadeName">Shade</h2>
+
+            <div class="control-group">
+                <label for="positionSlider">Position: <span id="positionValue">50</span>%</label>
+                <input type="range" id="positionSlider" min="0" max="100" value="50" class="slider">
+            </div>
+
+            <div class="quick-actions">
+                <button class="btn btn-secondary">Close</button>
+                <button class="btn btn-secondary">50%</button>
+                <button class="btn btn-secondary">Open</button>
+            </div>
+
+            <div class="advanced-section">
+                <h3>Advanced</h3>
+                <button class="btn btn-small">Identify (Beep)</button>
+                <button class="btn btn-small">Disconnect</button>
+            </div>
+        </div>
+
+        <div class="debug-section">
+            <h3>Debug Console</h3>
+            <div id="debugConsole" class="debug-console"></div>
+            <button class="btn btn-small">Clear</button>
+        </div>
+
+        <footer>
+            <p id="config-status">Encryption key configured ✓</p>
+            <p>Web Bluetooth API • Chrome/Edge only</p>
+        </footer>
+    </div>
+
+    <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+# Netlify deployment configuration for PowerView Shade Control
+
+[build]
+  # Publish directory (Vite build output)
+  publish = "dist"
+
+  # Build command with Vite
+  command = "npm install && npm run build"
+
+  # Functions directory
+  functions = "netlify/functions"
+
+[dev]
+  # Local development settings for `netlify dev`
+  command = "npm run dev"
+  targetPort = 8000
+  autoLaunch = false
+
+[[headers]]
+  # Apply these headers to all routes
+  for = "/*"
+
+  [headers.values]
+    # Enable HTTPS
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+    # Security headers
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Required for Web Bluetooth API (no unsafe-inline, no CDN)
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https:; img-src 'self' data:"
+
+[[redirects]]
+  # Redirect http to https
+  from = "http://*"
+  to = "https://:splat"
+  status = 301
+  force = true
