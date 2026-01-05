@@ -7,9 +7,6 @@
   # Build command with Vite
   command = "npm install && npm run build"
 
-  # Functions directory
-  functions = "netlify/functions"
-
 [dev]
   # Local development settings for `netlify dev`
   command = "npm run dev"

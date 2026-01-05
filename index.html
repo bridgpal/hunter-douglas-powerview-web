@@ -3,51 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerView Shade Control</title>
+    <title>PowerView Shade Control - Multi Shade</title>
     <link rel="stylesheet" href="/src/style.css">
+    <style>
+        .shade-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .shade-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .shade-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #212529;
+        }
+        .shade-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .status-connected {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-disconnected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status-connecting {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .shades-container {
+            padding: 20px 30px;
+        }
+        .add-shade-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>🪟 PowerView Shade Control</h1>
-            <p class="subtitle">Control your Hunter Douglas shades via Bluetooth</p>
+            <p class="subtitle">Control multiple Hunter Douglas shades</p>
         </header>
 
         <div class="status-bar">
-            <div id="status" class="status">Ready to scan</div>
+            <div id="status" class="status">Ready</div>
             <div id="encryption-status" class="encryption-status">
                 🔑 Encryption key loaded
             </div>
         </div>
 
         <div class="scan-section">
-            <button id="scanButton" class="btn btn-primary">
-                📡 Scan for Shades
+            <button id="addShadeButton" class="btn btn-primary">
+                ➕ Add Shade
+            </button>
+            <button id="reconnectAllButton" class="btn btn-secondary" style="margin-left: 10px; display: none;">
+                🔄 Reconnect All
             </button>
         </div>
 
-        <div id="shadesList" class="shades-list"></div>
-
-        <div id="controlPanel" class="control-panel" style="display: none;">
-            <h2 id="shadeName">Shade</h2>
-
-            <div class="control-group">
-                <label for="positionSlider">Position: <span id="positionValue">50</span>%</label>
-                <input type="range" id="positionSlider" min="0" max="100" value="50" class="slider">
-            </div>
-
-            <div class="quick-actions">
-                <button class="btn btn-secondary">Close</button>
-                <button class="btn btn-secondary">50%</button>
-                <button class="btn btn-secondary">Open</button>
-            </div>
-
-            <div class="advanced-section">
-                <h3>Advanced</h3>
-                <button class="btn btn-small">Identify (Beep)</button>
-                <button class="btn btn-small">Disconnect</button>
-            </div>
-        </div>
+        <div id="shadesContainer" class="shades-container"></div>
 
         <div class="debug-section">
             <h3>Debug Console</h3>
