@@ -7,43 +7,48 @@
     <link rel="stylesheet" href="/src/style.css">
     <style>
         .shade-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #ffffff;
+            border: 6px solid #000000;
+            padding: 30px;
+            margin: 0 0 4px 0;
         }
         .shade-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border-bottom: 4px solid #000000;
+            padding-bottom: 15px;
         }
         .shade-title {
-            font-size: 1.3em;
-            font-weight: 600;
-            color: #212529;
+            font-size: 1.5em;
+            font-weight: 900;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .shade-status {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
+            padding: 8px 16px;
+            font-size: 0.9em;
+            font-weight: 900;
+            border: 3px solid #000000;
+            text-transform: uppercase;
         }
         .status-connected {
-            background: #d4edda;
-            color: #155724;
+            background: #000000;
+            color: #ffffff;
         }
         .status-disconnected {
-            background: #f8d7da;
-            color: #721c24;
+            background: #ffffff;
+            color: #000000;
         }
         .status-connecting {
-            background: #fff3cd;
-            color: #856404;
+            background: #ffffff;
+            color: #000000;
         }
         .shades-container {
-            padding: 20px 30px;
+            padding: 30px;
+            border-bottom: 4px solid #000000;
         }
         .add-shade-btn {
             width: 100%;
@@ -54,23 +59,23 @@
 <body>
     <div class="container">
         <header>
-            <h1>🪟 PowerView Shade Control</h1>
+            <h1>POWERVIEW SHADE CONTROL</h1>
             <p class="subtitle">Control multiple Hunter Douglas shades</p>
         </header>
 
         <div class="status-bar">
             <div id="status" class="status">Ready</div>
             <div id="encryption-status" class="encryption-status">
-                🔑 Encryption key loaded
+                [KEY] Encryption key loaded
             </div>
         </div>
 
         <div class="scan-section">
             <button id="addShadeButton" class="btn btn-primary">
-                ➕ Add Shade
+                [+] Add Shade
             </button>
             <button id="reconnectAllButton" class="btn btn-secondary" style="margin-left: 10px; display: none;">
-                🔄 Reconnect All
+                [RECONNECT] Reconnect All
             </button>
         </div>
 
@@ -83,8 +88,8 @@
         </div>
 
         <footer>
-            <p id="config-status">Encryption key configured ✓</p>
-            <p>Web Bluetooth API • Chrome/Edge only</p>
+            <p id="config-status">Encryption key configured [OK]</p>
+            <p>Web Bluetooth API / Chrome/Edge only</p>
         </footer>
     </div>
 

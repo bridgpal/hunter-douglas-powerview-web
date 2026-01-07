@@ -382,9 +382,6 @@ function removeShade(shadeId) {
 
     debug(`Removed shade ${shadeId}`, 'info');
 
-    // Update shade count
-    updateShadeCount();
-
     // Show empty state if no shades remain
     const savedShades = getSavedShades();
     if (savedShades.length === 0) {
@@ -392,9 +389,8 @@ function removeShade(shadeId) {
         if (container) {
             container.innerHTML = `
                 <div class="empty-state">
-                    <span class="empty-icon">🪟</span>
-                    <p>No shades added yet</p>
-                    <p class="empty-hint">Click "Add Shade" to get started</p>
+                    <p>NO SHADES ADDED YET</p>
+                    <p class="empty-hint">CLICK "ADD SHADE" TO GET STARTED</p>
                 </div>
             `;
         }
