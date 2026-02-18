@@ -5,86 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PowerView Shade Control - Multi Shade</title>
     <link rel="stylesheet" href="/src/style.css">
-    <style>
-        .shade-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .shade-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .shade-title {
-            font-size: 1.3em;
-            font-weight: 600;
-            color: #212529;
-        }
-        .shade-status {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-        .status-connected {
-            background: #d4edda;
-            color: #155724;
-        }
-        .status-disconnected {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        .status-connecting {
-            background: #fff3cd;
-            color: #856404;
-        }
-        .shades-container {
-            padding: 20px 30px;
-        }
-        .add-shade-btn {
-            width: 100%;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🪟 PowerView Shade Control</h1>
-            <p class="subtitle">Control multiple Hunter Douglas shades</p>
+    <div class="app-shell">
+        <header class="app-header">
+            <div>
+                <p class="app-kicker">Home Automation Console</p>
+                <h1>PowerView Shade Control</h1>
+                <p class="subtitle">Manage multiple Hunter Douglas shades from one hub.</p>
+            </div>
+            <div class="home-mode">
+                <span class="mode-label">Home Mode</span>
+                <span class="mode-chip">Comfort</span>
+            </div>
         </header>
 
-        <div class="status-bar">
-            <div id="status" class="status">Ready</div>
-            <div id="encryption-status" class="encryption-status">
-                🔑 Encryption key loaded
+        <section class="overview-grid">
+            <div class="status-card">
+                <div class="status-label">Connection</div>
+                <div id="status" class="status">Ready</div>
+                <p class="status-meta">Bluetooth control center</p>
             </div>
-        </div>
+            <div class="status-card">
+                <div class="status-label">Security</div>
+                <div id="encryption-status" class="encryption-status">Encryption key loaded</div>
+                <p class="status-meta">Encrypted commands enabled</p>
+            </div>
+            <div class="status-card">
+                <div class="status-label">Automation</div>
+                <div class="status">Scheduled scenes</div>
+                <p class="status-meta">Weekday rhythm active</p>
+            </div>
+        </section>
 
-        <div class="scan-section">
-            <button id="addShadeButton" class="btn btn-primary">
-                ➕ Add Shade
-            </button>
-            <button id="reconnectAllButton" class="btn btn-secondary" style="margin-left: 10px; display: none;">
-                🔄 Reconnect All
-            </button>
-        </div>
+        <section class="action-bar">
+            <div class="action-primary">
+                <button id="addShadeButton" class="btn btn-primary">Add Shade</button>
+                <button id="reconnectAllButton" class="btn btn-secondary" style="display: none;">Reconnect All</button>
+            </div>
+            <div class="control-all-wrap">
+                <span class="control-label">All Shades</span>
+                <div class="control-all">
+                    <button class="btn btn-secondary">Close</button>
+                    <button class="btn btn-secondary">50%</button>
+                    <button class="btn btn-secondary">Open</button>
+                </div>
+            </div>
+        </section>
 
-        <div id="shadesContainer" class="shades-container"></div>
+        <section class="shades-panel">
+            <div class="panel-header">
+                <div>
+                    <h2>Rooms & Shades</h2>
+                    <p class="panel-subtitle">Select a shade to fine-tune its position.</p>
+                </div>
+                <div class="panel-chip">Live Control</div>
+            </div>
+            <div id="shadesContainer" class="shades-container"></div>
+        </section>
 
-        <div class="debug-section">
-            <h3>Debug Console</h3>
+        <section class="debug-section">
+            <div class="panel-header">
+                <div>
+                    <h2>System Log</h2>
+                    <p class="panel-subtitle">Realtime device activity and diagnostics.</p>
+                </div>
+                <button class="btn btn-small">Clear</button>
+            </div>
             <div id="debugConsole" class="debug-console"></div>
-            <button class="btn btn-small">Clear</button>
-        </div>
+        </section>
 
         <footer>
-            <p id="config-status">Encryption key configured ✓</p>
-            <p>Web Bluetooth API • Chrome/Edge only</p>
+            <p id="config-status">Encryption key configured.</p>
+            <p>Web Bluetooth API supported in Chrome and Edge.</p>
         </footer>
     </div>
 
