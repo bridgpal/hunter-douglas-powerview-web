@@ -25,7 +25,7 @@ body {
     background: radial-gradient(circle at top, #1e293b 0%, #0f172a 48%, #0b1120 100%);
     color: var(--text);
     min-height: 100vh;
-    padding: 32px 20px 48px;
+    padding: 24px 16px 32px;
 }
 
 body::before {
@@ -44,7 +44,7 @@ body::before {
     max-width: 1100px;
     margin: 0 auto;
     background: var(--surface);
-    border-radius: 28px;
+    border-radius: 16px;
     box-shadow: var(--shadow);
     overflow: hidden;
     border: 1px solid rgba(148, 163, 184, 0.2);
@@ -55,15 +55,15 @@ body::before {
     justify-content: space-between;
     align-items: center;
     gap: 24px;
-    padding: 36px 40px;
+    padding: 28px 32px;
     background: linear-gradient(135deg, #0f172a 0%, #1f2937 100%);
     color: #e2e8f0;
 }
 
 .app-header h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.4rem;
-    margin-bottom: 8px;
+    font-size: 2.1rem;
+    margin-bottom: 6px;
     color: #f8fafc;
 }
 
@@ -73,51 +73,25 @@ body::before {
     letter-spacing: 0.14em;
     font-size: 0.75rem;
     color: rgba(226, 232, 240, 0.6);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .subtitle {
     color: rgba(226, 232, 240, 0.75);
-    font-size: 1rem;
-}
-
-.home-mode {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.4);
-    border-radius: 16px;
-    padding: 16px 18px;
-    min-width: 180px;
-    text-align: right;
-}
-
-.mode-label {
-    display: block;
-    font-size: 0.8rem;
-    color: rgba(226, 232, 240, 0.7);
-    margin-bottom: 8px;
-}
-
-.mode-chip {
-    display: inline-block;
-    background: rgba(14, 165, 165, 0.2);
-    color: #5eead4;
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .overview-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-    padding: 28px 40px 10px;
+    gap: 12px;
+    padding: 24px 32px 8px;
 }
 
 .status-card {
     background: var(--card);
-    border-radius: 18px;
-    padding: 18px 20px;
+    border-radius: 12px;
+    padding: 14px 16px;
     border: 1px solid var(--border);
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
 }
@@ -127,12 +101,12 @@ body::before {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--text-muted);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 600;
 }
 
 .status {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--text);
 }
@@ -140,7 +114,7 @@ body::before {
 .status-meta {
     margin-top: 6px;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .encryption-status {
@@ -153,30 +127,30 @@ body::before {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 16px;
-    padding: 20px 40px 30px;
+    gap: 12px;
+    padding: 16px 32px 20px;
 }
 
 .action-primary {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
 .control-all-wrap {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: var(--surface-alt);
-    padding: 12px 16px;
-    border-radius: 16px;
+    padding: 10px 12px;
+    border-radius: 12px;
     border: 1px solid var(--border);
 }
 
 .control-all {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .control-label {
@@ -185,11 +159,11 @@ body::before {
 }
 
 .btn {
-    padding: 12px 22px;
-    font-size: 1rem;
+    padding: 10px 18px;
+    font-size: 0.95rem;
     font-weight: 600;
     border: none;
-    border-radius: 12px;
+    border-radius: 6px;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     font-family: 'DM Sans', sans-serif;
@@ -223,7 +197,7 @@ body::before {
 }
 
 .btn-small {
-    padding: 8px 14px;
+    padding: 6px 12px;
     font-size: 0.85rem;
     background: rgba(15, 23, 42, 0.1);
     color: var(--text);
@@ -231,51 +205,51 @@ body::before {
 
 .shades-panel,
 .debug-section {
-    margin: 0 30px 30px;
+    margin: 0 24px 24px;
     background: var(--card);
-    border-radius: 24px;
+    border-radius: 16px;
     border: 1px solid var(--border);
-    padding: 26px;
+    padding: 22px;
 }
 
 .panel-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 16px;
 }
 
 .panel-header h2 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     color: var(--text);
 }
 
 .panel-subtitle {
     color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-top: 6px;
+    font-size: 0.9rem;
+    margin-top: 4px;
 }
 
 .panel-chip {
     background: rgba(14, 165, 165, 0.15);
     color: var(--primary-dark);
-    padding: 6px 12px;
-    border-radius: 999px;
+    padding: 4px 10px;
+    border-radius: 14px;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .shades-container {
     display: grid;
-    gap: 18px;
+    gap: 14px;
 }
 
 .shade-card {
     background: var(--surface-alt);
-    border-radius: 18px;
-    padding: 20px 22px;
+    border-radius: 12px;
+    padding: 16px 18px;
     border: 1px solid rgba(148, 163, 184, 0.3);
     box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
 }
@@ -284,19 +258,19 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .shade-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--text);
 }
 
 .shade-status {
-    padding: 4px 12px;
-    border-radius: 999px;
-    font-size: 0.8rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -318,20 +292,20 @@ body::before {
 }
 
 .control-group {
-    margin: 16px 0;
+    margin: 12px 0;
 }
 
 .control-group label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 600;
     color: var(--text);
 }
 
 .slider {
     width: 100%;
-    height: 8px;
-    border-radius: 999px;
+    height: 6px;
+    border-radius: 12px;
     background: #cbd5f5;
     outline: none;
     -webkit-appearance: none;
@@ -340,8 +314,8 @@ body::before {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary), #14b8a6);
     border: 3px solid #f8fafc;
@@ -350,8 +324,8 @@ body::before {
 }
 
 .slider::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary), #14b8a6);
     border: 3px solid #f8fafc;
@@ -359,25 +333,25 @@ body::before {
 }
 
 .quick-actions {
-    margin: 12px 0 16px;
+    margin: 10px 0 12px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
 .advanced-section {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
     border-top: 1px solid rgba(148, 163, 184, 0.3);
-    padding-top: 16px;
+    padding-top: 12px;
 }
 
 .empty-state {
     text-align: center;
-    padding: 32px;
+    padding: 24px;
     border: 1px dashed rgba(148, 163, 184, 0.6);
-    border-radius: 18px;
+    border-radius: 12px;
     color: var(--text-muted);
 }
 
@@ -403,10 +377,10 @@ body::before {
     background: rgba(2, 6, 23, 0.9);
     color: #86efac;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem;
-    padding: 18px;
-    border-radius: 16px;
-    height: 200px;
+    font-size: 0.8rem;
+    padding: 14px;
+    border-radius: 12px;
+    height: 180px;
     overflow-y: auto;
 }
 
@@ -427,11 +401,11 @@ body::before {
 }
 
 footer {
-    padding: 20px 30px 30px;
+    padding: 16px 24px 24px;
     text-align: center;
     color: rgba(226, 232, 240, 0.8);
-    font-size: 0.9rem;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.8) 100%);
+    font-size: 0.85rem;
+    background: rgba(15, 23, 42, 0.65);
 }
 
 footer p:first-child {
@@ -459,23 +433,23 @@ footer p:first-child {
 
 @media (max-width: 600px) {
     body {
-        padding: 20px 12px 36px;
+        padding: 16px 10px 28px;
     }
 
     .app-shell {
-        border-radius: 20px;
+        border-radius: 14px;
     }
 
     .app-header,
     .overview-grid,
     .action-bar {
-        padding: 24px;
+        padding: 20px;
     }
 
     .shades-panel,
     .debug-section {
-        margin: 0 16px 24px;
-        padding: 20px;
+        margin: 0 12px 20px;
+        padding: 18px;
     }
 
     .action-primary {
